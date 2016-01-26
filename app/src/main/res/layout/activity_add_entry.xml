@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hello.hegberg.hegberg_fueltrack.AddEntry">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel Add"
+        android:id="@+id/cancel_add"
+        android:layout_alignTop="@+id/done_add"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/done_add"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date (yyyy-mm-dd): "
+        android:id="@+id/date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="61dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Station: "
+        android:id="@+id/station"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/date"
+        android:layout_alignLeft="@+id/date"
+        android:layout_alignStart="@+id/date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Odometer Reading (km): "
+        android:id="@+id/odometer"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/station"
+        android:layout_alignLeft="@+id/station"
+        android:layout_alignStart="@+id/station" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Grade: "
+        android:id="@+id/fuel_grade"
+        android:layout_below="@+id/odometer"
+        android:layout_alignLeft="@+id/odometer"
+        android:layout_alignStart="@+id/odometer"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Amount (L): "
+        android:id="@+id/fuel_amount"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/fuel_grade"
+        android:layout_alignLeft="@+id/fuel_grade"
+        android:layout_alignStart="@+id/fuel_grade" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Fuel Unit Cost (cents per L):"
+        android:id="@+id/fuel_unit_cost"
+        android:layout_below="@+id/fuel_amount"
+        android:layout_alignLeft="@+id/fuel_amount"
+        android:layout_alignStart="@+id/fuel_amount"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/add_date"
+        android:layout_above="@+id/station"
+        android:layout_toRightOf="@+id/date"
+        android:layout_alignRight="@+id/done_add"
+        android:layout_alignEnd="@+id/done_add" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_station"
+        android:layout_above="@+id/odometer"
+        android:layout_toRightOf="@+id/station"
+        android:layout_alignRight="@+id/add_date"
+        android:layout_alignEnd="@+id/add_date" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/add_odometer"
+        android:layout_above="@+id/fuel_grade"
+        android:layout_alignRight="@+id/add_station"
+        android:layout_alignEnd="@+id/add_station"
+        android:layout_toRightOf="@+id/odometer"
+        android:layout_toEndOf="@+id/odometer" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_fuel_grade"
+        android:layout_alignBottom="@+id/fuel_grade"
+        android:layout_alignRight="@+id/add_odometer"
+        android:layout_alignEnd="@+id/add_odometer"
+        android:layout_toRightOf="@+id/fuel_grade"
+        android:layout_toEndOf="@+id/fuel_grade" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/add_fuel_amount"
+        android:layout_alignBottom="@+id/fuel_amount"
+        android:layout_alignRight="@+id/add_fuel_grade"
+        android:layout_alignEnd="@+id/add_fuel_grade"
+        android:layout_toEndOf="@+id/fuel_amount"
+        android:layout_toRightOf="@+id/fuel_amount" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/add_fuel_unit_cost"
+        android:layout_alignBottom="@+id/fuel_unit_cost"
+        android:layout_toRightOf="@+id/fuel_unit_cost"
+        android:layout_alignRight="@+id/add_fuel_amount"
+        android:layout_alignEnd="@+id/add_fuel_amount" />
+
+</RelativeLayout>
+
+
