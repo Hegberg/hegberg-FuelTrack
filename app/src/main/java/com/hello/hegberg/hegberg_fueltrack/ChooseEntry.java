@@ -59,6 +59,23 @@ public class ChooseEntry extends AppCompatActivity {
 
         //sets text field to the total fuel cost
         totalFuelAmount.setText(String.valueOf(fuelCostFormat.format(totalCost)));
+
+        //set of radio group with proper amount of radio buttons
+        AmountOfEntries = entries.size();
+        radioGroup = new RadioButton[AmountOfEntries];
+        addButtons(AmountOfEntries);
+
+        for (int i = 1; i <= radioGroup.length; i++) {
+            //RadioButton btn = new RadioButton(this);
+            RadioButton btn = radioGroup[i-1];
+            btn.setChecked(false);
+            //((ViewGroup) findViewById(R.id.Group)).addView(radioGroup[i - 1]);
+        }
+        if (entryChosen != -1) {
+            RadioButton btn = radioGroup[entryChosen];
+            btn.setChecked(true);
+        }
+        //RadioGroup radio = (RadioGroup) findViewById(R.id.Group);
     }
 
 
@@ -76,11 +93,22 @@ public class ChooseEntry extends AppCompatActivity {
         Button backFromView = (Button) findViewById(R.id.back_from_view);
         Button addEntry = (Button) findViewById(R.id.AddEntryInChoose);
 
+
         //set of radio group with proper amount of radio buttons
+
         AmountOfEntries = entries.size();
         radioGroup = new RadioButton[AmountOfEntries];
         addButtons(AmountOfEntries);
+
         RadioGroup radio = (RadioGroup) findViewById(R.id.Group);
+        for (int i = 1; i <= radioGroup.length; i++) {
+            //RadioButton btn = new RadioButton(this);
+            RadioButton btn = radioGroup[i-1];
+            btn.setChecked(false);
+            //((ViewGroup) findViewById(R.id.Group)).addView(radioGroup[i - 1]);
+        }
+
+
 
         //set entry chosen to unselected
         entryChosen = -1;
@@ -141,13 +169,19 @@ public class ChooseEntry extends AppCompatActivity {
 
     //Add proper amount of radio buttons, and set their text
     public void addButtons(int number) {
+        //clears previous radio buttons
+        ((ViewGroup) findViewById(R.id.Group)).removeAllViews();
+
+        //adds in correct amount of radio buttons
         for (int i = 1; i <= number; i++) {
             RadioButton btn = new RadioButton(this);
-            btn.setId(1-1 + i); //1-1 because just using i raises an error
+            btn.setId(1 - 1 + i); //1-1 because just using i raises an error
             btn.setText("Select Entry " + btn.getId() + " to view or edit");
+            btn.setChecked(false);
             radioGroup[i-1] = btn;
-            ((ViewGroup) findViewById(R.id.Group)).addView(radioGroup[i-1]);
+            ((ViewGroup) findViewById(R.id.Group)).addView(radioGroup[i - 1]);
         }
+
     }
 
     //Most of code from lab 3, edited to work with my application, loads all entrys into entries
