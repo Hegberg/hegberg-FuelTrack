@@ -43,14 +43,22 @@ public class ChooseEntry extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+        //loads all entries
         loadFromFile();
+        //initializes text field
         TextView totalFuelAmount = (TextView) findViewById(R.id.total_fuel_cost);
+
+        //calculates total cost of all the fuel
         totalCost = 0.0;
         for (int i = 0; i < entries.size(); i++) {
             currentEntry = entries.get(i);
             totalCost = totalCost + currentEntry.getFuelCost();
         }
+
+        //sets the total cost to 2 decimals
         DecimalFormat fuelCostFormat = new DecimalFormat("#.##");
+
+        //sets text field to the total fuel cost
         totalFuelAmount.setText(String.valueOf(fuelCostFormat.format(totalCost)));
     }
 

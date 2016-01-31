@@ -31,20 +31,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<LogEntry> entries = new ArrayList<LogEntry>();
-    private static final String FILENAME = "file.sav";
-    private LogEntry currentEntry;
-    private Double totalCost = 0.0;
+    //private ArrayList<LogEntry> entries = new ArrayList<LogEntry>();
+    //private static final String FILENAME = "file.sav";
+    //private LogEntry currentEntry;
+    //private Double totalCost = 0.0;
 
-    //happens once
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadFromFile();
+        //loadFromFile();
+
+        //initialize buttons
         Button logEntries = (Button) findViewById(R.id.LogEntries);
         Button addEntry = (Button) findViewById(R.id.AddEntry);
 
+        //when view/edit entries clicked go to choose entry
         logEntries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //when add entry clicked go to add entry
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,12 +63,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
     //happens every time menu opened/returned to
+    /*
     @Override
     protected void onStart() {
         super.onStart();
         loadFromFile();
-        /*
+
         TextView totalFuelAmount = (TextView) findViewById(R.id.TotalFuelAmount);
         totalCost = 0.0;
         //totalFuelAmount.setText(String.valueOf(totalCost));
@@ -75,11 +81,13 @@ public class MainActivity extends AppCompatActivity {
         }
         DecimalFormat fuelCostFormat = new DecimalFormat("#.##");
         totalFuelAmount.setText(String.valueOf(fuelCostFormat.format(totalCost)));
-        */
+
     }
+    */
     // Took from TA in Lab
 
 
+    /*
 
     private void loadFromFile() {
         try {
@@ -111,4 +119,5 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException();
         }
     }
+    */
 }
