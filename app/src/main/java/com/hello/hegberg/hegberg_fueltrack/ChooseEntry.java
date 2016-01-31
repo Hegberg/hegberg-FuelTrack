@@ -30,9 +30,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ChooseEntry extends AppCompatActivity {
+    //initialize variables
     private ArrayList<LogEntry> entries = new ArrayList<LogEntry>();
-    //private ArrayAdapter<LogEntry> adapter;
-    //private ListView oldEntryList;
     private static final String FILENAME = "file.sav";
     private int AmountOfEntries;
     private RadioButton[] radioGroup;
@@ -67,19 +66,26 @@ public class ChooseEntry extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_entry);
+
+        //load all entries
         loadFromFile();
+
+        //initialize buttons
         Button editEntry = (Button) findViewById(R.id.EditEntry);
         Button viewEntry = (Button) findViewById(R.id.ViewEntry);
         Button backFromView = (Button) findViewById(R.id.back_from_view);
-        //oldEntryList = (ListView) findViewById(R.id.oldEntryList);
+        Button addEntry = (Button) findViewById(R.id.AddEntryInChoose);
 
+        //set of radio group with proper amount of radio buttons
         AmountOfEntries = entries.size();
         radioGroup = new RadioButton[AmountOfEntries];
         addButtons(AmountOfEntries);
         RadioGroup radio = (RadioGroup) findViewById(R.id.Group);
 
+        //set entry chosen to unselected
         entryChosen = -1;
 
+        //Exit application button
         backFromView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +93,7 @@ public class ChooseEntry extends AppCompatActivity {
             }
         });
 
+        //If a radio button clicked, sets entryChosen to proper entry
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -98,6 +105,7 @@ public class ChooseEntry extends AppCompatActivity {
             }
         });
 
+        //If an entry selected, go to edit entry activity with that entry
         editEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +117,7 @@ public class ChooseEntry extends AppCompatActivity {
             }
         });
 
+        //If an entry selected, go to view entry activity with that entry
         viewEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,8 +128,18 @@ public class ChooseEntry extends AppCompatActivity {
                 }
             }
         });
+
+        //Go to add entry activity
+        addEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseEntry.this, AddEntry.class));
+
+            }
+        });
     }
 
+    //Add proper amount of radio buttons, and set their text
     public void addButtons(int number) {
         for (int i = 1; i <= number; i++) {
             RadioButton btn = new RadioButton(this);
@@ -131,6 +150,7 @@ public class ChooseEntry extends AppCompatActivity {
         }
     }
 
+    //Most of code from lab 3, edited to work with my application, loads all entrys into entries
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -140,21 +160,6 @@ public class ChooseEntry extends AppCompatActivity {
             entries = gson.fromJson(in, listType);
         } catch (FileNotFoundException e) {
             entries = new ArrayList<>();
-        }
-    }
-
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(FILENAME, 0);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(entries, out);
-            out.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException();
-        } catch (IOException e) {
-            throw new RuntimeException();
         }
     }
 }

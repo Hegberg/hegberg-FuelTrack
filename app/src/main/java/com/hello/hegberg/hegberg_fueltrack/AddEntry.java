@@ -1,6 +1,5 @@
 package com.hello.hegberg.hegberg_fueltrack;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +22,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class AddEntry extends AppCompatActivity {
+    //initialize variables
     private EditText dateText;
     private EditText stationText;
     private EditText odometerText;
@@ -37,6 +37,7 @@ public class AddEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
 
+        //initialize buttons and edit text fields
         Button cancelAdd = (Button) findViewById(R.id.cancel_add);
         Button doneAdd = (Button) findViewById(R.id.done_add);
         dateText = (EditText) findViewById(R.id.add_date);
@@ -46,7 +47,7 @@ public class AddEntry extends AppCompatActivity {
         fuelAmountText = (EditText) findViewById(R.id.add_fuel_amount);
         fuelUnitCostText = (EditText) findViewById(R.id.add_fuel_unit_cost);
 
-
+        //cancels adding current entry, all entered info lost
         cancelAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,10 +55,12 @@ public class AddEntry extends AppCompatActivity {
             }
         });
 
+        //saves entry to file, if entry entered properly
         doneAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
+                    //gets all info and converts it to proper type
                     String date = dateText.getText().toString();
                     String station = stationText.getText().toString();
                     String odometerString = odometerText.getText().toString();
@@ -67,7 +70,7 @@ public class AddEntry extends AppCompatActivity {
                     double fuelAmount = Double.parseDouble(fuelAmountString);
                     String fuelUnitCostString = fuelUnitCostText.getText().toString();
                     double fuelUnitCost = Double.parseDouble(fuelUnitCostString);
-
+                    //make sure no string fields are blank
                     if (date.equals("")){
                         Toast.makeText(AddEntry.this, "You need to enter a date", Toast.LENGTH_SHORT).show();
                     } else if (station.equals("")){
@@ -75,7 +78,7 @@ public class AddEntry extends AppCompatActivity {
                     } else if (fuelGrade.equals("")){
                         Toast.makeText(AddEntry.this, "You need to enter a fuel grade", Toast.LENGTH_SHORT).show();
                     } else {
-                        //Double fuelCost = odometer * fuelAmount * (fuelUnitCost/100);
+                        //calculate fuel cost and add it to the current entries, then return to main menu
                         Double fuelCost = fuelAmount * (fuelUnitCost/100);
                         LogEntry latestEntry = new LogEntry(date, station, odometer, fuelGrade, fuelAmount, fuelUnitCost, fuelCost);
                         loadFromFile();
@@ -84,12 +87,14 @@ public class AddEntry extends AppCompatActivity {
                         finish();
                     }
                 } catch (NumberFormatException e) {
+                    //if any number blank or not a vaild number, that error is caught here
                     Toast.makeText(AddEntry.this, "Not all data present", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
+
+    //Most of code from lab 3, edited to work with my application, loads all entrys into entries
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -104,6 +109,7 @@ public class AddEntry extends AppCompatActivity {
     }
 
     private void saveInFile() {
+        //Most of code from lab 3, edited to work with my application, saves all entrys in entries into a file
         try {
             FileOutputStream fos = openFileOutput(FILENAME, 0);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));

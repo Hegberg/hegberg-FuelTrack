@@ -2,12 +2,8 @@ package com.hello.hegberg.hegberg_fueltrack;
 
 import java.util.ArrayList;
 
-
-
-/**
- * Created by Chris on 1/23/2016.
- */
 public class LogEntry {
+    //initialize variables
     private String date;
     private String station;
     private Double odometer;
@@ -18,6 +14,7 @@ public class LogEntry {
     private ArrayList<LogEntry> currentEntries = new ArrayList<>();
     private static final String FILENAME = "file.sav";
 
+    //constructor for a Log Entry, gets all information and saves it in that instance of the class
     public LogEntry (String date, String station, Double odometer, String fuelGrade, Double fuelAmount, Double fuelUnitCost, Double fuelCost) {
         this.date = date;
         this.station = station;
@@ -28,6 +25,7 @@ public class LogEntry {
         this.fuelCost = fuelCost;
     }
 
+    //sets all information in the Log Entry, requires all info for that class
     public void setAll(String date, String station, Double odometer, String fuelGrade, Double fuelAmount, Double fuelUnitCost, Double fuelCost){
         this.date = date;
         this.station = station;
@@ -38,60 +36,38 @@ public class LogEntry {
         this.fuelCost = fuelCost;
     }
 
-
+    //returns the date of the instance of LogEntry being used
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
+    //returns the station of the instance of LogEntry being used
     public String getStation() {
         return station;
     }
 
-    public void setStation(String station) {
-        this.station = station;
-    }
-
+    //returns the odometer reading of the instance of LogEntry being used
     public Double getOdometer() {
         return odometer;
     }
 
-    public void setOdometer(Double odometer) {
-        this.odometer = odometer;
-    }
-
+    //returns the fuel amount of the instance of LogEntry being used
     public Double getFuelAmount() {
         return fuelAmount;
     }
 
-    public void setFuelAmount(Double fuelAmount) {
-        this.fuelAmount = fuelAmount;
-    }
-
+    //returns the fuel grade of the instance of LogEntry being used
     public String getFuelGrade() {
         return fuelGrade;
     }
 
-    public void setFuelGrade(String fuelGrade) {
-        this.fuelGrade = fuelGrade;
-    }
-
+    //returns the fuel unit cost of the instance of LogEntry being used
     public Double getFuelUnitCost() {
         return fuelUnitCost;
     }
 
-    public void setFuelUnitCost(Double fuelUnitCost) {
-        this.fuelUnitCost = fuelUnitCost;
-    }
-
+    //returns the fuel cost of the instance of LogEntry being used
     public Double getFuelCost() {
         return fuelCost;
-    }
-
-    public void setFuelCost(Double fuelCost) {
-        this.fuelCost = fuelCost;
     }
 }
